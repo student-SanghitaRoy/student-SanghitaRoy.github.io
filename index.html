@@ -214,12 +214,20 @@ img{display:block;max-width:100%}
 @keyframes spin{to{transform:rotate(360deg)}}
 .ph-circle{
   width:clamp(160px,18vw,220px);height:clamp(160px,18vw,220px);
-  border-radius:50%;overflow:hidden;position:relative;
+  border-radius:50%;overflow:hidden;
+  position:relative;
   border:3px solid rgba(0,212,255,.22);
   box-shadow:0 0 40px rgba(0,212,255,.14),0 0 80px rgba(123,97,255,.07);
-  cursor:pointer;
+  background:linear-gradient(135deg,rgba(10,20,48,.9),rgba(14,26,58,.95));
 }
-.ph-circle img{width:100%;height:100%;object-fit:cover}
+.ph-circle img{
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  object-fit:cover;object-position:center;
+  border-radius:50%;
+  z-index:1;
+  display:block;
+}
 .ph-placeholder{
   width:100%;height:100%;
   display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
@@ -601,7 +609,7 @@ footer{
     <button class="nav-btn" onclick="goTo('skills')">Skills</button>
     <button class="nav-btn" onclick="goTo('education')">Education</button>
     <button class="nav-btn" onclick="goTo('contact')">Contact</button>
-    <a class="nav-resume" href="Sanghita_Roy_Resume.pdf" download>↓ Resume</a>
+    <a class="nav-resume" href="https://student-sanghitaroy.github.io/Sanghita_Roy_Resume.pdf" download>↓ Resume</a>
   </div>
   <button class="ham" id="ham" onclick="toggleDrawer()" aria-label="Menu">
     <span></span><span></span><span></span>
@@ -615,7 +623,7 @@ footer{
   <button class="nav-btn" onclick="goTo('skills');closeDrawer()">Skills</button>
   <button class="nav-btn" onclick="goTo('education');closeDrawer()">Education</button>
   <button class="nav-btn" onclick="goTo('contact');closeDrawer()">Contact</button>
-  <a class="nav-resume" href="Sanghita_Roy_Resume.pdf" download onclick="closeDrawer()">↓ Resume</a>
+  <a class="nav-resume" href="https://student-sanghitaroy.github.io/Sanghita_Roy_Resume.pdf" download onclick="closeDrawer()">↓ Resume</a>
 </div>
 
 <!-- ═══ HERO ═══ -->
@@ -652,11 +660,12 @@ footer{
       <div class="ph-ring2"></div>
       <div class="ph-ring3"></div>
       <div class="ph-circle" id="ph-circle">
-        <div class="ph-scan"></div>
         <!-- YOUR PHOTO: upload photo.jpg to your GitHub repo and it will appear here automatically -->
-        <img src="photo.jpg" alt="Sanghita Roy" style="width:100%;height:100%;object-fit:cover"
+        <img src="photo.jpg" alt="Sanghita Roy"
+          style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;z-index:1;border-radius:50%"
           onerror="this.style.display='none';document.getElementById('ph-fallback').style.display='flex'">
-        <div id="ph-fallback" class="ph-placeholder" style="display:none" onclick="document.getElementById('ph-input').click()">
+        <div class="ph-scan"></div>
+        <div id="ph-fallback" class="ph-placeholder" style="display:none;position:absolute;inset:0;z-index:2" onclick="document.getElementById('ph-input').click()">
           <svg width="34" height="34" viewBox="0 0 36 36" fill="none"><circle cx="18" cy="14" r="7" stroke="#8AAABB" stroke-width="1.5"/><path d="M4 32c0-7.732 6.268-14 14-14s14 6.268 14 14" stroke="#8AAABB" stroke-width="1.5" stroke-linecap="round"/></svg>
           <span>Upload photo.jpg<br>to GitHub repo</span>
         </div>
@@ -694,7 +703,7 @@ footer{
     <div class="r-card">
       <div class="r-icon">📄</div>
       <p>Download my full<br>resume / CV</p>
-      <a class="btn-cv" href="Sanghita_Roy_Resume.pdf" download>↓ Download CV</a>
+      <a class="btn-cv" href="https://student-sanghitaroy.github.io/Sanghita_Roy_Resume.pdf" download>↓ Download CV</a>
       <p class="r-hint">Upload <code>Sanghita_Roy_Resume.pdf</code><br>to your GitHub repo</p>
     </div>
   </div>
