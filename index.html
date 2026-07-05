@@ -491,8 +491,30 @@ footer{
 @keyframes orbF{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-28px) scale(1.07)}}
 
 /* ═══════════════════════════════
-   RESPONSIVE
+   ACHIEVEMENTS
 ═══════════════════════════════ */
+.ach-card{
+  background:var(--surf);border:1px solid var(--border);border-radius:var(--r);
+  padding:26px;
+  backdrop-filter:blur(10px);
+  opacity:0;transform:translateY(20px);transition:all .5s;
+}
+.ach-card.vis{opacity:1;transform:none}
+.ach-card:hover{border-color:rgba(0,212,255,.32);box-shadow:var(--glow);transform:translateY(-3px)}
+.ach-left{display:flex;gap:16px;align-items:flex-start}
+.ach-icon{font-size:28px;flex-shrink:0;margin-top:2px}
+.ach-title{font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:700;color:var(--text);margin-bottom:4px}
+.ach-org{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--cyan);letter-spacing:.06em;margin-bottom:10px}
+.ach-desc{font-size:13.5px;color:var(--sub);line-height:1.75}
+.btn-cert{
+  display:inline-flex;align-items:center;gap:7px;
+  padding:8px 18px;border-radius:8px;
+  font-family:'Space Grotesk',sans-serif;font-size:12.5px;font-weight:600;
+  color:var(--cyan);border:1px solid rgba(0,212,255,.3);
+  background:var(--c-dim);text-decoration:none;letter-spacing:.04em;
+  transition:all .22s;
+}
+.btn-cert:hover{background:var(--cyan);color:#050A18;box-shadow:0 4px 16px rgba(0,212,255,.3);transform:translateY(-1px)}
 
 /* Large screens 1400px+ */
 @media(min-width:1400px){
@@ -605,6 +627,8 @@ footer{
   </div>
   <div class="nav-right">
     <button class="nav-btn" onclick="goTo('about')">About</button>
+    <button class="nav-btn" onclick="goTo('experience')">Experience</button>
+    <button class="nav-btn" onclick="goTo('achievements')">Achievements</button>
     <button class="nav-btn" onclick="goTo('projects')">Projects</button>
     <button class="nav-btn" onclick="goTo('skills')">Skills</button>
     <button class="nav-btn" onclick="goTo('education')">Education</button>
@@ -619,6 +643,8 @@ footer{
 <!-- mobile drawer -->
 <div id="drawer">
   <button class="nav-btn" onclick="goTo('about');closeDrawer()">About</button>
+  <button class="nav-btn" onclick="goTo('experience');closeDrawer()">Experience</button>
+  <button class="nav-btn" onclick="goTo('achievements');closeDrawer()">Achievements</button>
   <button class="nav-btn" onclick="goTo('projects');closeDrawer()">Projects</button>
   <button class="nav-btn" onclick="goTo('skills');closeDrawer()">Skills</button>
   <button class="nav-btn" onclick="goTo('education');closeDrawer()">Education</button>
@@ -710,8 +736,57 @@ footer{
 
 <hr class="divider">
 
+<!-- ═══ EXPERIENCE ═══ -->
+<div class="sec" id="experience">
+  <p class="eyebrow">// experience</p>
+  <h2 class="sec-title">Experience</h2>
+  <div class="edu-tl">
+    <div class="edu-item">
+      <div class="edu-yr">March 2025 — Present</div>
+      <div class="edu-deg">Coordinator — ODP Welfare Club</div>
+      <div class="edu-inst">Indian Institute of Technology, Guwahati</div>
+      <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:10px">
+        <span class="tag">Team Coordination</span>
+        <span class="tag">Event Planning</span>
+        <span class="tag">Speaker Outreach</span>
+        <span class="tag">Community Engagement</span>
+        <span class="tag">Student Development</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ═══ ACHIEVEMENTS ═══ -->
+<div class="sec" id="achievements">
+  <p class="eyebrow">// recognition</p>
+  <h2 class="sec-title"><span>Achievements</span></h2>
+  <div class="ach-card">
+    <div class="ach-left">
+      <div class="ach-icon">🏆</div>
+      <div class="ach-body">
+        <div class="ach-title">Summer Analytics 2025 — Certificate of Excellence</div>
+        <div class="ach-org">Consulting & Analytics Club, IIT Guwahati · 2025</div>
+        <div class="ach-desc">Placed in the top 10 percentile among all participants. Delivered outstanding performance across two hackathon rounds and successfully completed a capstone project in Data Science & Machine Learning.</div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:12px">
+          <span class="tag">Top 10 Percentile</span>
+          <span class="tag">Hackathon</span>
+          <span class="tag">Capstone Project</span>
+          <span class="tag">Data Science</span>
+          <span class="tag">ML</span>
+        </div>
+        <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap">
+          <a class="btn-cert" href="Summer_Analytics_Certificate.pdf" target="_blank">📄 View Certificate</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
 <!-- ═══ PROJECTS ═══ -->
-<div class="sec" id="projects">
   <p class="eyebrow">// what I've built</p>
   <h2 class="sec-title">Projects</h2>
 
@@ -842,7 +917,7 @@ function closeDrawer(){document.getElementById('drawer').classList.remove('open'
 
 /* ── nav scroll + active ── */
 const nav=document.getElementById('nav');
-const secs=['about','projects','skills','education','contact'];
+const secs=['about','experience','achievements','projects','skills','education','contact'];
 const btns=document.querySelectorAll('.nav-btn');
 window.addEventListener('scroll',()=>{
   nav.classList.toggle('scrolled',window.scrollY>40);
@@ -952,7 +1027,7 @@ const obs=new IntersectionObserver(entries=>{
     obs.unobserve(e.target);
   });
 },{threshold:.08,rootMargin:'0px 0px -32px 0px'});
-document.querySelectorAll('.eyebrow,.sec-title,.a-card,.project,.sk-block,.edu-item,.ex-card,.r-card').forEach(el=>obs.observe(el));
+document.querySelectorAll('.eyebrow,.sec-title,.a-card,.project,.sk-block,.edu-item,.ex-card,.r-card,.ach-card').forEach(el=>obs.observe(el));
 
 /* ── stat counters ── */
 function count(el,target,suffix,dur){
